@@ -21,7 +21,7 @@ jobs:
         name: Prepare
         id: prepare
         run: |
-          DOCKER_IMAGE=virtualkev/boxes.livingroom.cloud
+          DOCKER_IMAGE=virtualkev/boxes
           DOCKER_PLATFORMS=linux/arm/v7,linux/amd64
           VERSION=edge
 
