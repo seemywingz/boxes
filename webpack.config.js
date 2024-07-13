@@ -1,32 +1,32 @@
+const devServerPort = 9000;
 const path = require('path');
-console.log(path.join( __dirname + "/srv"));
+const srvDir = path.resolve(__dirname, 'srv');
 
 module.exports = {
-
-  node: {
-    fs: "empty"
-  },
-  
-  entry: {
-    app: './src/index.js',
-  },
-
+  entry: './src/index.js',
   output: {
-    path: path.join( __dirname + "/srv"),
-    filename: 'bundle.js'
+    path: srvDir,
+    filename: 'bundle.js',
   },
-
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
-      }
-    ]
+        use: 'babel-loader',
+      },
+    ],
   },
-  
   devServer: {
-    port: 10001
-  }
+    static: {
+      directory: srvDir,
+    },
+    port: devServerPort,
+  },
+  resolve: {
+    fallback: {
+      "fs": false,
+      "path": require.resolve("path-browserify"),
+    },
+  },
 };
